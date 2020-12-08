@@ -1,2 +1,2 @@
-import userRoutes from "./users/routes";
-export default [...userRoutes];
+import clothesRoutes from "./clothes/routes";
+export default [...clothesRoutes];
