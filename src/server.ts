@@ -4,6 +4,9 @@ import express from "express";
 import { applyMiddleware, applyRoutes } from "./utils";
 import middleware from "./middleware";
 import routes from "./services";
+import { connectToDB } from './db/index';
+
+connectToDB();
 
 const router = express();
 applyMiddleware(middleware, router);
