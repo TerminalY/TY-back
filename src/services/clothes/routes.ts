@@ -1,13 +1,15 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import * as controller from "./controllers/clothes-controller";
 import { ICloth } from '../../db/models/cloth';
+import { toArray } from "../../utils";
+import { Int32 } from "mongodb";
 
 export default [
   {
     path: "/clothes",
     method: "get",
-    handler: async (req: Request, res: Response) => {
-      const data = await controller.getCloth();
+    handler: async (req: Request, res: Response, next: NextFunction) => {
+      const data = await controller.getCloth(req.query);
       res.send(data);
     }
   },
