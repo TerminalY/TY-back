@@ -4,7 +4,8 @@ const clothesSchema = new mongoose.Schema({
     type: String,
     size: Array,
     price: Number,
-    colors: Array
+    colors: Array,
+    amount: Number
 });
 
 export interface ICloth {
@@ -12,6 +13,7 @@ export interface ICloth {
     size: string[];
     price: Number;
     colors: string[];
+    amount: Number;
 }
 
 export const Cloth = mongoose.model('Clothes', clothesSchema);
