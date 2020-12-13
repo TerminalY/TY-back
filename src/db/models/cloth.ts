@@ -1,6 +1,9 @@
 import mongoose from 'mongoose'
 
 const clothesSchema = new mongoose.Schema({
+    name: { type: String,
+            unique: true
+    },
     type: String,
     size: Array,
     price: Number,
@@ -9,6 +12,7 @@ const clothesSchema = new mongoose.Schema({
 });
 
 export interface ICloth {
+    name: string;
     type: string;
     size: string[];
     price: Number;
