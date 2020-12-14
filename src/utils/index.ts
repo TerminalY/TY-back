@@ -30,3 +30,7 @@ export const applyRoutes = (routes: Route[], router: Router) => {
     (router as any)[method](path, handler);
   }
 };
+
+export const toArray = (param: any) => {
+  return Array.isArray(param) ? param : [param];
+}

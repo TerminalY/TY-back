@@ -1,18 +1,20 @@
 import { Cloth, ICloth } from '../../../db/models/cloth';
 
-export const getClothes = async () => {
-    return await Cloth.find();
+export const getClothes = async (filter: ICloth) => {
+    const a = await Cloth.find(filter);
+    return a;
 };
 
 export const createCloth = async (cloth: ICloth) => {
     const clothObject = new Cloth(cloth);
     
     const res = await clothObject.save((error, document) => {
-        if(!error) {
-            return true;
+        if(error) {
+            return false;
         }
-        return false;
-    })
+        console.log(document)
+        return true;
+    });
 
     return res;
 }
