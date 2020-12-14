@@ -13,6 +13,7 @@ export const createCloth = async (cloth: ICloth) => {
         if(error) {
             return false;
         }
+        console.log(document)
         return true;
     });
 
