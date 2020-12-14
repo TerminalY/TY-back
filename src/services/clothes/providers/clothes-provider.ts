@@ -3,7 +3,6 @@ import { Cloth, ICloth } from '../../../db/models/cloth';
 export const getClothes = async (filter: ICloth) => {
     const a = await Cloth.find(filter);
     return a;
-
 };
 
 export const createCloth = async (cloth: ICloth) => {

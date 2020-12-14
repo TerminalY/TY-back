@@ -10,14 +10,17 @@ export const connectToDB = () => {
 		useCreateIndex: true,
 		useFindAndModify: false
 	});
-	
 	const db = mongoose.connection;
-	
-	db.once('open', function() {
-	  console.log(`we're connected to db`);
+
+	db.on("connected", function() {
+		console.log("Connected to db");
 	});
-	
-	db.on('error', err => {
-		console.log(`Error in db : ${err}`);
+
+	db.on("error", function(error) {
+		console.log("Connection to db failed:" + error);
+	});
+
+	db.on("disconnected", function() {
+		console.log("Disconnected from db");
 	});
 };
