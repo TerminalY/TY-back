@@ -2,10 +2,11 @@
   "name": "ty-back",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "dev": "tsc-watch --onSuccess \"node ./dist/server.js\""
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^5.0.0-alpha.7",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.5",
     "tsc-watch": "^1.1.39",
     "typescript": "^3.9.7"
   },
