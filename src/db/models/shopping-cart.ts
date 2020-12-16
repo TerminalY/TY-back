@@ -10,8 +10,7 @@ const cartSchema = new mongoose.Schema({
 });
 
 export interface ICart {
-    user: IUser;
-    clothes: ICloth[];
+    clothes?: ICloth[];
 }
 
 export const Cloth = mongoose.model('Clothes', cartSchema);

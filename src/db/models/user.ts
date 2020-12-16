@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { ICart } from './shopping-cart';
 
 const usersSchema = new mongoose.Schema({
     userName: { type: String, 
@@ -12,8 +13,9 @@ const usersSchema = new mongoose.Schema({
 });
 
 export interface IUser {
-    userName: String;
-    type: String;
+    userName?: String;
+    type?: String;
+    cart?: ICart;
 }
 
 export const Cloth = mongoose.model('Clothes', usersSchema);
