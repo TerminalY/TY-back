@@ -1,8 +1,14 @@
 import mongoose from 'mongoose'
 
 const usersSchema = new mongoose.Schema({
-    userName: String,
-    type: String
+    userName: { type: String, 
+                unique: true
+            },
+    type: String,
+    cart: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'carts'
+    }
 });
 
 export interface IUser {
