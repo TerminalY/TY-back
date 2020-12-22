@@ -12,12 +12,12 @@ const clothesSchema = new mongoose.Schema({
 });
 
 export interface ICloth {
-    name: string;
-    type: string;
-    size: string[];
-    price: Number;
-    colors: string[];
-    amount: Number;
+    name?: string;
+    type?: string;
+    size?: string[];
+    price?: Number;
+    colors?: string[];
+    amount?: Number;
 }
 
 export const Cloth = mongoose.model('Clothes', clothesSchema);
