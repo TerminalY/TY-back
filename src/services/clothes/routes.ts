@@ -19,11 +19,13 @@ export default [
     method: "post",
     handler: async (req: Request, res: Response) => {
       const cloth: ICloth = { name: req.body.name,
-                              colors: req.body.color,
+                              color: req.body.color,
                               price: req.body.price,
                               size: req.body.size,
                               type: req.body.type,
-                              amount: req.body.amount
+                              amount: req.body.amount,
+                              gender: req.body.gender,
+                              img: req.body.img
       }
       const result = await controller.createCloth(cloth);
       res.send(result);
@@ -34,7 +36,7 @@ export default [
     method: "post",
     handler: async (req: Request, res: Response) => {
       const cloth: ICloth = { name: req.params.name,
-                              colors: req.body.color,
+                              color: req.body.color,
                               price: req.body.price,
                               size: req.body.size,
                               type: req.body.type,
