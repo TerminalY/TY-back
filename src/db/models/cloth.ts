@@ -1,4 +1,5 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import { mongoConditions } from '../../utils/models';
 
 const clothesSchema = new mongoose.Schema({
     name: { type: String,
@@ -16,8 +17,8 @@ const clothesSchema = new mongoose.Schema({
 export interface ICloth {
     name?: string;
     type?: string;
-    size?: string[];
-    price?: Number;
+    size?: mongoConditions;
+    price?: mongoConditions;
     color?: string;
     amount?: Number;
     gender?: string;
