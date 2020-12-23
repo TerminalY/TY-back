@@ -1,6 +1,6 @@
 // https://docs.mongodb.com/manual/reference/operator/query-comparison/
 
-export interface mongoConditions {
+export interface IMongoConditions {
     $eq?: any;
     $gt?: any;
     $gte?: any;
@@ -10,3 +10,5 @@ export interface mongoConditions {
     $ne?: any;
     $nin?: any;
 }
+
+export type LooseObject = { [key:string] : any};

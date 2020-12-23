@@ -1,6 +1,6 @@
 import { Cloth, ICloth } from '../../../db/models/cloth';
 
-export const getClothes = async (filter: ICloth) => {
+export const getClothes = async (filter) => {
     return await Cloth.find(filter);
 };
 

@@ -1,24 +1,27 @@
 import mongoose from 'mongoose';
-import { mongoConditions } from '../../utils/models';
+import { IMongoConditions } from '../../utils/models';
 
 const clothesSchema = new mongoose.Schema({
     name: { type: String,
             unique: true
     },
     type: String,
-    size: Array,
+    size: String,
     price: Number,
-    colors: Array,
+    colors: String,
     amount: Number,
     gender: String,
     img: String
 });
 
+// name type    size    price   colors  amount  gender  img
+
+
 export interface ICloth {
     name?: string;
     type?: string;
-    size?: mongoConditions;
-    price?: mongoConditions;
+    size?: string;
+    price?: Number;
     color?: string;
     amount?: Number;
     gender?: string;
