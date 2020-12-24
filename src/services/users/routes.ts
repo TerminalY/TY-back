@@ -4,7 +4,7 @@ import { IUser } from '../../db/models/user';
 
 export default [
     {
-        path: "/clothes",
+        path: "/users",
         method: "get",
         handler: async (req: Request, res: Response, next: NextFunction) => {
           const data = 'hello world';
