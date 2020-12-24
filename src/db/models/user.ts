@@ -3,8 +3,7 @@ import mongoose from 'mongoose'
 import { ICart } from './shopping-cart';
 
 const usersSchema = new mongoose.Schema({
-    _id: ObjectId,
-    name: { type: String, 
+    userName: { type: String, 
                 unique: true
             },
     type: String,

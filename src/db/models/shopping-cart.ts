@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import { IUser } from './user';
 import { ICloth } from './cloth';
 
 const cartSchema = new mongoose.Schema({
