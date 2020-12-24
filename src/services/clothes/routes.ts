@@ -7,7 +7,7 @@ export default [
     path: "/clothes",
     method: "get",
     handler: async (req: Request, res: Response) => {
-      const data = await controller.getCloth();
+      const data = await controller.getCloth(req.params);
       res.send(data);
     }
   },

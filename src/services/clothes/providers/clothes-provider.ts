@@ -1,7 +1,8 @@
 import { Cloth, ICloth } from '../../../db/models/cloth';
+import { LooseObject } from '../../../utils/models';
 
-export const getClothes = async () => {
-    const a = await Cloth.find();
+export const getClothes = async (filter: LooseObject) => {
+    const a = await Cloth.find(filter);
     console.log(a)
     return a;
 
