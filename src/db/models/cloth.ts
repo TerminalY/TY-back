@@ -3,25 +3,47 @@ import mongoose from 'mongoose'
 const clothesSchema = new mongoose.Schema({
     name: String,
     type: String,
-    size: Array,
+    size: { type: String,
+            enum: ['XS','S','M','L','XL','XXL']},
     price: Number,
     color: String,
-    amount: Number,
+    stock: Number,
     gender: String,
     img: String
 });
 
+// Interface for pushing data to db
 export interface ICloth {
-    name?: string;
-    type?: string;
-    size?: string[];
-    price?: Number;
-    color?: string;
-    amount?: Number;
+    name: string;
+    type: string;
+    price: number;
     gender?: string;
-    img?: string;
+    size: string;
+    color: string;
+    stock: number;
+    img: string;
 }
 
-export const Cloth = mongoose.model('Clothes', clothesSchema);
+// Interface for pulling data from db
+export interface ClothDocument extends ICloth, mongoose.Document {
+}
+
+export interface ParsedCloth {
+    name: string;
+    type: string;
+    price: Number;
+    gender?: string;
+    img?: string;
+    properties: ClothProperties;
+}
+// color : [size, stock]
+type ClothProperties = { [color: string]: [string, number][]}
+
+// example
+let a: ClothProperties = {
+    'blue': [['L',150],['XL',15]]
+}
+
+export const Cloth = mongoose.model<ClothDocument>('Clothes', clothesSchema);
 
 

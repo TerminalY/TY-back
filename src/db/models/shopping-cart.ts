@@ -1,6 +1,7 @@
-import mongoose from 'mongoose'
+import mongoose, { Types } from 'mongoose'
 import { IUser } from './user';
 import { ICloth } from './cloth';
+import { Type } from 'typescript';
 
 const cartSchema = new mongoose.Schema({
     clothes: [{
@@ -10,6 +11,7 @@ const cartSchema = new mongoose.Schema({
 });
 
 export interface ICart {
+    _id: Types.ObjectId;
     clothes?: ICloth[];
 }
 

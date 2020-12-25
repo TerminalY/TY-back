@@ -3,7 +3,6 @@ import { LooseObject } from '../../../utils/models';
 
 export const getClothes = async (filter: LooseObject) => {
     const a = await Cloth.find(filter);
-    console.log(a)
     return a;
 };
 
