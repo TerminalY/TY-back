@@ -1,5 +1,5 @@
 import * as provider from "../providers/clothes-provider";
-import { ICloth, ClothDocument, ParsedCloth } from '../../../db/models/cloth';
+import { ICloth, ParsedCloth } from '../../../db/models/cloth';
 import { LooseObject } from "../../../utils/models";
 import { toArray } from "../../../utils/index";
 

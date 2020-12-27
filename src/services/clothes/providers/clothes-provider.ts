@@ -1,8 +1,8 @@
-import { Cloth, ICloth } from '../../../db/models/cloth';
+import { Cloth, ICloth, ClothDocument } from '../../../db/models/cloth';
 import { LooseObject } from '../../../utils/models';
 
 export const getClothes = async (filter: LooseObject) => {
-    const a = await Cloth.find(filter);
+    const a: ClothDocument[] = await Cloth.find(filter);
     return a;
 };
 

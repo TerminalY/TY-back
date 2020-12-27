@@ -1,7 +1,5 @@
 import mongoose, { Types } from 'mongoose'
-import { IUser } from './user';
 import { ICloth } from './cloth';
-import { Type } from 'typescript';
 
 const cartSchema = new mongoose.Schema({
     clothes: [{
@@ -10,11 +8,15 @@ const cartSchema = new mongoose.Schema({
     }]
 });
 
+// Interface for pushing data to db
 export interface ICart {
-    _id: Types.ObjectId;
     clothes?: ICloth[];
 }
 
-export const Cart = mongoose.model('Carts', cartSchema);
+// Interface for pulling data from db
+export interface CartDocument extends ICart, mongoose.Document {
+}
+
+export const Cart = mongoose.model<CartDocument>('Carts', cartSchema);
 
 
