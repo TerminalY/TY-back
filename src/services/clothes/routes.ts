@@ -23,6 +23,7 @@ export default [
                               price: req.body.price,
                               size: req.body.size,
                               type: req.body.type,
+                              subType: req.body.subType,
                               stock: req.body.stock,
                               gender: req.body.gender,
                               img: req.body.image,

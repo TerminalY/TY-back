@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 const clothesSchema = new mongoose.Schema({
     name: String,
     type: String,
+    subtype: String,
     size: { type: String,
             enum: ['XS','S','M','L','XL','XXL']},
     company: String,
@@ -17,6 +18,7 @@ const clothesSchema = new mongoose.Schema({
 export interface ICloth {
     name: string;
     type: string;
+    subType: string;
     price: number;
     company: string;
     gender?: string;
