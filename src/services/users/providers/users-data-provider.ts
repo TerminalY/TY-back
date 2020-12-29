@@ -23,6 +23,7 @@ export const createUser = async (user: IUser) => {
     }
     catch(err) {
         console.log(err)
+        return false;
     }
 
     return true;

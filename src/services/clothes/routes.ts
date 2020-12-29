@@ -18,14 +18,15 @@ export default [
     path: "/clothes",
     method: "post",
     handler: async (req: Request, res: Response) => {
-      const cloth: ICloth = { name: req.body.name,
+      const cloth: ICloth = { name: req.body.desc,
                               color: req.body.color,
                               price: req.body.price,
                               size: req.body.size,
                               type: req.body.type,
                               stock: req.body.stock,
                               gender: req.body.gender,
-                              img: req.body.img
+                              img: req.body.image,
+                              company: req.body.company
       }
       const result = await controller.createCloth(cloth);
       res.send(result);

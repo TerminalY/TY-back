@@ -8,7 +8,7 @@ export default [
       path: "/users",
       method: "get",
       handler: async (req: Request, res: Response, next: NextFunction) => {
-        const data =await controller.getUser({firstName: 'or', lastName: 'fridman', gender:'men', password:'tesat', userName: 'test12'});
+        const data = await controller.getUser({firstName: 'or', lastName: 'fridman', password:'tesat', userName: 'test12'});
         res.send(data);
       }
     },
@@ -16,9 +16,8 @@ export default [
       path: "/users/create",
       method: "get",
       handler: async (req: Request, res: Response, next: NextFunction) => {
-        const data = 'hello world';
-        await controller.createUser({firstName: 'or', lastName: 'fridman', gender:'men', password:'tesat', userName: 'test12', cart: undefined});
-        res.send(data);
+        const result  = await controller.createUser({name: 'or', email:`test@gmail.com`, password:'tesat', cart: undefined});
+        res.send(result);
       }
     },
 ];

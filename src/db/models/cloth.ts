@@ -5,6 +5,7 @@ const clothesSchema = new mongoose.Schema({
     type: String,
     size: { type: String,
             enum: ['XS','S','M','L','XL','XXL']},
+    company: String,
     price: Number,
     color: String,
     stock: Number,
@@ -17,6 +18,7 @@ export interface ICloth {
     name: string;
     type: string;
     price: number;
+    company: string;
     gender?: string;
     size: string;
     color: string;
