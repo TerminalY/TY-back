@@ -1,7 +1,7 @@
 import mongoose, { Types } from 'mongoose'
 
 const usersSchema = new mongoose.Schema({
-    name:       { type: String, required: true },
+    userName:   { type: String, required: true },
     password:   { type: String, required: true },
     type:         String,
     email:      { type: String, required: true },
@@ -10,7 +10,7 @@ const usersSchema = new mongoose.Schema({
 });
 
 export interface IUser  {
-    name: string;
+    userName: string;
     password: string;
     email: string;
     type?: string;
