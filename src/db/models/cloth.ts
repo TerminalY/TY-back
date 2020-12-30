@@ -18,7 +18,7 @@ const clothesSchema = new mongoose.Schema({
 export interface ICloth {
     name: string;
     type: string;
-    subType: string;
+    subtype: string;
     price: number;
     company: string;
     gender?: string;
@@ -35,7 +35,9 @@ export interface ClothDocument extends ICloth, mongoose.Document {
 export interface ParsedCloth {
     name: string;
     type: string;
+    subtype: string;
     price: Number;
+    company: string;
     gender?: string;
     img?: string;
     properties: ClothProperties;
