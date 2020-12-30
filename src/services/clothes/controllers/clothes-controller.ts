@@ -41,12 +41,12 @@ export const getCloth = async (params: any) => {
             subtype : clothDoc.clothes[0].subtype,
             price : clothDoc.clothes[0].price,
             company: clothDoc.clothes[0].company,
-            name : clothDoc.clothes[0].name,
+            name : clothDoc._id,
             img : clothDoc.clothes[0].img,
             gender : clothDoc.clothes[0].gender,
             properties: {}
         };
-        
+
         // Go over each cloth and save the size and amount per color
         clothDoc.clothes.forEach(cloth => {
             if(!parsedCloth.properties[cloth.color]) {
@@ -56,7 +56,7 @@ export const getCloth = async (params: any) => {
         });
         retClothes.push(parsedCloth);
     });
-
+    
     return retClothes;
 }
 
