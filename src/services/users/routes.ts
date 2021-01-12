@@ -46,7 +46,7 @@ export default [
       path: "/users/:username/addToCart",
       method: "post",
       handler: async (req: Request, res: Response, next: NextFunction) => {
-        const result  = await controller.addToCart({userName: req.params.username}, req.body.clothName, req.body.clothSize, req.body.clothColor);
+        const result  = await controller.addToCart(req.params.username, req.body.clothName, req.body.clothSize, req.body.clothColor);
         res.send(result);
       }
     },

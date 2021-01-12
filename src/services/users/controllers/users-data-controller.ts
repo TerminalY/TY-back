@@ -15,8 +15,8 @@ export const getUserCart = async (user: IUser) => {
     return await provider.getUserCart(user);
 };
 
-export const addToCart = async (user: LooseObject,  clothName: string, clothSize: string, clothColor: string) => {
-    return await provider.addToCart(user, clothName, clothSize, clothColor);
+export const addToCart = async (username: string,  clothName: string, clothSize: string, clothColor: string) => {
+    return await provider.addToCart(username, clothName, clothSize, clothColor);
 };
 
 export const createUser = async (user: IUser) => {

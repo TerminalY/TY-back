@@ -22,8 +22,8 @@ export const getUserCart = async (user: LooseObject) => {
     return cart;
 };
 
-export const addToCart = async (username: LooseObject, clothName: string, clothSize: string, clothColor: string) => {
-    const user = await User.findOne(username).populate('cart').select('cart');
+export const addToCart = async (username: string, clothName: string, clothSize: string, clothColor: string) => {
+    const user = await User.findOne({userName: username}).populate('cart').select('cart');
     const cloth = await Cloth.findOne({name: clothName, color: clothColor, size: clothSize});
     if(cloth) {
         await Cart.updateOne(user?.cart,{ $push: { clothes: cloth._id } });
