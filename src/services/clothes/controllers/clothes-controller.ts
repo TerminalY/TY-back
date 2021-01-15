@@ -19,7 +19,7 @@ export const getCloth = async (params: any) => {
 
     // Regex for /name/ is like *name*
     params.name     ? filter.name   = { $regex: '.*' + params.name + '.*', $options: 'i' } : undefined;
-    params.color    ? filter.color  = params.color : undefined;
+    params.color    ? filter.color  = toArray(params.color) : undefined;
     params.type     ? filter.type   = params.type : undefined;
     params.gender   ? filter.gender = params.gender : undefined;
     params.stock    ? filter.stock  = params.stock : undefined;
@@ -37,11 +37,11 @@ export const getCloth = async (params: any) => {
     (await provider.getClothes(filter,paging)).forEach(clothDoc => {
         // Bind basic properties
         let parsedCloth: ParsedCloth = {
+            name : clothDoc._id,
             type : clothDoc.clothes[0].type,
             subtype : clothDoc.clothes[0].subtype,
             price : clothDoc.clothes[0].price,
             company: clothDoc.clothes[0].company,
-            name : clothDoc._id,
             img : clothDoc.clothes[0].img,
             gender : clothDoc.clothes[0].gender,
             properties: {}
