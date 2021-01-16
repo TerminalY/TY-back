@@ -37,7 +37,6 @@ export const getCloth = async (params: any) => {
     params.minPrice ? filter.price!.$gte = Number(params.minPrice) : undefined;
     params.maxPrice ? filter.price!.$lte = Number(params.maxPrice) : undefined;
 
-    console.log( filter.color);
     // Group clothes into a single array that contains all of the sizes, colors and stock
     (await provider.getClothes(filter,paging)).forEach(clothDoc => {
         // Bind basic properties
