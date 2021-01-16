@@ -17,9 +17,13 @@ export const getCloth = async (params: any) => {
         filter.size = {};
     }
 
+    if (params.color) {
+        filter.color = {};
+    }
+
     // Regex for /name/ is like *name*
     params.name     ? filter.name   = { $regex: '.*' + params.name + '.*', $options: 'i' } : undefined;
-    params.color    ? filter.color  = toArray(params.color) : undefined;
+    params.color    ? filter.color!.$in  = toArray(params.color) : undefined;
     params.type     ? filter.type   = params.type : undefined;
     params.gender   ? filter.gender = params.gender : undefined;
     params.stock    ? filter.stock  = params.stock : undefined;
@@ -33,6 +37,7 @@ export const getCloth = async (params: any) => {
     params.minPrice ? filter.price!.$gte = Number(params.minPrice) : undefined;
     params.maxPrice ? filter.price!.$lte = Number(params.maxPrice) : undefined;
 
+    console.log( filter.color);
     // Group clothes into a single array that contains all of the sizes, colors and stock
     (await provider.getClothes(filter,paging)).forEach(clothDoc => {
         // Bind basic properties
