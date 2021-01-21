@@ -16,8 +16,8 @@ export default [
       method: "get",
       handler: [async (req: Request, res: Response) => {
         let data;
-        if(req.body.username) {
-          data = await controller.getUser({username: req.query.username});
+        if(req.params.username) {
+          data = await controller.getUser({username: req.params.username});
         }
         res.send(data);
       }]

@@ -8,7 +8,6 @@ export const getCloth = async (params: any) => {
     let filter: LooseObject = {};
     let paging: LooseObject = {};
     let retClothes: ParsedCloth[] = [];
-
     // Init filter options if required
     if(params.minPrice || params.maxPrice) {
         filter.price = {};
@@ -25,6 +24,7 @@ export const getCloth = async (params: any) => {
     params.name     ? filter.name   = { $regex: '.*' + params.name + '.*', $options: 'i' } : undefined;
     params.color    ? filter.color!.$in  = toArray(params.color) : undefined;
     params.type     ? filter.type   = params.type : undefined;
+    params.subtype  ? filter.subtype   = params.subtype : undefined;
     params.gender   ? filter.gender = params.gender : undefined;
     params.stock    ? filter.stock  = params.stock : undefined;
 

@@ -7,6 +7,7 @@ import { Cloth } from "../../../db/models/cloth";
 
 export const getAllUsers = async () => {
     const users = await User.find().populate('cart').populate('favorites');
+    return users;
 };
 
 export const getUser = async (username: LooseObject) => {
