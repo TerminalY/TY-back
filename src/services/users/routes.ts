@@ -3,6 +3,9 @@ import * as controller from "./controllers/users-data-controller";
 import { LooseObject } from "../../utils/models";
 
 export default [
+  /**
+   * Get all users
+   */
     {
       path: "/users",
       method: "get",
@@ -11,6 +14,9 @@ export default [
         res.send(data);
       }]
     },
+    /**
+     * Get specific user
+     */
     {
       path: "/users/:username",
       method: "get",
@@ -22,6 +28,20 @@ export default [
         res.send(data);
       }]
     },
+        /**
+     * logic
+     */
+    {
+      path: "/login",
+      method: "post",
+      handler: [async (req: Request, res: Response, next: NextFunction) => {
+        const result  = await controller.login(req.body.username, req.body.password);
+        res.send(result);
+      }]
+    },
+    /**
+     * Create new user
+     */
     {
       path: "/users",
       method: "post",
@@ -30,6 +50,9 @@ export default [
         res.send(result);
       }]
     },
+    /**
+     * Update specific user
+     */
     {
       path: "/users/:username",
       method: "post",
@@ -43,10 +66,18 @@ export default [
       }
     },
     {
-      path: "/users/:username/addToCart",
+      path: "/users/:email/addToCart",
       method: "post",
       handler: async (req: Request, res: Response, next: NextFunction) => {
-        const result  = await controller.addToCart(req.params.username, req.body.clothName, req.body.clothSize, req.body.clothColor);
+        const result  = await controller.addToCart(req.params.email, req.body.clothName, req.body.clothSize, req.body.clothColor);
+        res.send(result);
+      }
+    },
+    {
+      path: "/users/:email/getCart",
+      method: "get",
+      handler: async (req: Request, res: Response, next: NextFunction) => {
+        const result  = await controller.getCart(req.params.email);
         res.send(result);
       }
     },

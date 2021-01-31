@@ -32,6 +32,13 @@ export const addToCart = async (username: string, clothName: string, clothSize: 
     return true;
 };
 
+export const getCart = async (email: string) => {
+    const user = await User.findOne({email: email});
+    const cart = await Cart.findOne({_id: user?.cart});
+    console.log(cart);
+    return cart;
+};
+
 export const createUser = async (user: IUser) => {
     let created;
     try {
@@ -59,4 +66,9 @@ export const updateUser = async (username: LooseObject, newDetails: LooseObject)
         throw err;
     }
     return result;
+};
+
+export const login = async (email: string, password: string) => {
+    const user = await User.findOne({email: email});
+    return (user?.password === password);
 };

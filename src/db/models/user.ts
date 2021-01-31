@@ -4,7 +4,7 @@ const usersSchema = new mongoose.Schema({
     username:   { type: String, required: true },
     password:   { type: String, required: true },
     type:         String,
-    email:      { type: String, required: true },
+    email:      { type: String, required: true, unique: true },
     cart:       { type: mongoose.Schema.Types.ObjectId, ref: 'Carts' },
     favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Clothes'}]
 });
