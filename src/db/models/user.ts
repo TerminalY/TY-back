@@ -5,8 +5,7 @@ const usersSchema = new mongoose.Schema({
     password:   { type: String, required: true },
     type:         String,
     email:      { type: String, required: true, unique: true },
-    cart:       { type: mongoose.Schema.Types.ObjectId, ref: 'Carts' },
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Clothes'}]
+    cart:       { type: mongoose.Schema.Types.ObjectId, ref: 'Carts' }
 });
 
 export interface IUser  {

@@ -18,24 +18,24 @@ export default [
      * Get specific user
      */
     {
-      path: "/users/:username",
+      path: "/users/:email",
       method: "get",
       handler: [async (req: Request, res: Response) => {
         let data;
         if(req.params.username) {
-          data = await controller.getUser({username: req.params.username});
+          data = await controller.getUser({email: req.params.email});
         }
         res.send(data);
       }]
     },
-        /**
+    /**
      * logic
      */
     {
       path: "/login",
       method: "post",
       handler: [async (req: Request, res: Response, next: NextFunction) => {
-        const result  = await controller.login(req.body.username, req.body.password);
+        const result  = await controller.login(req.body.email, req.body.password);
         res.send(result);
       }]
     },
@@ -54,14 +54,12 @@ export default [
      * Update specific user
      */
     {
-      path: "/users/:username",
+      path: "/users/:email",
       method: "post",
       handler: async (req: Request, res: Response, next: NextFunction) => {
         let updatedParams: LooseObject = {};
-        req.body.email ? updatedParams.email = req.body.email : undefined;
         req.body.password ? updatedParams.password = req.body.password : undefined;
-
-        const result  = await controller.updateUser({userName: req.params.username}, updatedParams);
+        const result  = await controller.updateUser({email: req.params.email}, updatedParams);
         res.send(result);
       }
     },

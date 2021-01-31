@@ -7,8 +7,8 @@ export const getAllUsers = async () => {
     return await provider.getAllUsers();
 }
 
-export const getUser = async (username: LooseObject) => {
-    return await provider.getUser(username);
+export const getUser = async (email: LooseObject) => {
+    return await provider.getUser(email);
 }
 
 export const getUserCart = async (user: IUser) => {
@@ -21,7 +21,6 @@ export const addToCart = async (username: string,  clothName: string, clothSize:
 
 export const getCart = async (email: string) => {
     return await provider.getCart(email);
-    return '';
 };
 
 export const createUser = async (user: IUser) => {

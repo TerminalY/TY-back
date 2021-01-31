@@ -10,10 +10,10 @@ export const getAllUsers = async () => {
     return users;
 };
 
-export const getUser = async (username: LooseObject) => {
-    const user = await User.findOne(username).populate('cart').populate('favorites');
+export const getUser = async (email: LooseObject) => {
+    const user = await User.findOne(email).populate('cart').populate('favorites');
     if(!user) {
-        throw new Error('no such username');
+        throw new Error('no such email');
     }
     return user;
 }
@@ -34,8 +34,8 @@ export const addToCart = async (username: string, clothName: string, clothSize: 
 
 export const getCart = async (email: string) => {
     const user = await User.findOne({email: email});
-    const cart = await Cart.findOne({_id: user?.cart});
-    console.log(cart);
+    const cart = await Cart.findOne({_id: user?.cart}).populate('clothes');
+    
     return cart;
 };
 
@@ -57,10 +57,10 @@ export const createUser = async (user: IUser) => {
     return true;
 };
 
-export const updateUser = async (username: LooseObject, newDetails: LooseObject) => {
+export const updateUser = async (email: LooseObject, newDetails: LooseObject) => {
     let result;
     try {
-        result = await User.updateOne(username, newDetails);
+        result = await User.updateOne(email, newDetails);
     }
     catch(err) {
         throw err;
