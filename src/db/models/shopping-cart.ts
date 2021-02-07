@@ -1,7 +1,6 @@
-import mongoose, { MapReduceOptions, Types } from 'mongoose';
-import { ClothDocument } from './cloth';
+import mongoose, { Types } from 'mongoose';
+import { ICloth } from './cloth';
 
-declare function emit(k);
 
 const cartSchema = new mongoose.Schema({
     clothes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Clothes'}]
@@ -9,7 +8,7 @@ const cartSchema = new mongoose.Schema({
 
 // Interface for pushing data to db
 export interface ICart {
-    clothes?: Types.ObjectId[];
+    clothes?: ICloth[];
 }
 
 // Interface for pulling data from db

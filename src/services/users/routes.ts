@@ -46,7 +46,7 @@ export default [
       path: "/users",
       method: "post",
       handler: [async (req: Request, res: Response, next: NextFunction) => {
-        const result  = await controller.createUser({username: req.body.username, email: req.body.email, password: req.body.password, cart: undefined});
+        const result  = await controller.createUser(req.body.username, req.body.email, req.body.password);
         res.send(result);
       }]
     },

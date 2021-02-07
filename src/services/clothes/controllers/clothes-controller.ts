@@ -2,7 +2,7 @@ import * as provider from "../providers/clothes-provider";
 import { ICloth, ParsedCloth } from '../../../db/models/cloth';
 import { LooseObject } from "../../../utils/models";
 import { toArray } from "../../../utils/index";
-
+import { Request } from 'express';
 
 export const getCloth = async (params: any) => {
     let filter: LooseObject = {};
@@ -64,6 +64,26 @@ export const getCloth = async (params: any) => {
     return retClothes;
 }
 
-export const createCloth = async (cloth: ICloth) => {
+export const createCloth = async (req: Request) => {
+    // Build cloth object for query
+    const cloth: ICloth = { name: req.body.desc,
+        color: req.body.color,
+        price: req.body.price,
+        size: req.body.size,
+        type: req.body.type,
+        subtype: req.body.subtype,
+        stock: req.body.stock,
+        gender: req.body.gender,
+        img: req.body.image,
+        company: req.body.company
+    }
     return await provider.createCloth(cloth);
+}
+
+export const updateCloth = async (clothParams: LooseObject, amount: number) => {
+    return await provider.updateCloth(clothParams, amount);
+}
+
+export const deleteCloth = async (clothParams: LooseObject) => {
+    return await provider.deleteCloth(clothParams);
 }

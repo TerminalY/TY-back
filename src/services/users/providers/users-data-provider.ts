@@ -1,9 +1,10 @@
 import { IUser, User } from "../../../db/models/user";
-import mongoose  from "mongoose";
 import { LooseObject } from "../../../utils/models";
 import { createCart } from '../../carts/controllers/carts-data-controller'
 import { Cart } from "../../../db/models/shopping-cart";
 import { Cloth } from "../../../db/models/cloth";
+import { of } from 'rxjs';
+import { map, reduce } from 'rxjs/operators';
 
 export const getAllUsers = async () => {
     const users = await User.find().populate('cart').populate('favorites');
@@ -35,7 +36,7 @@ export const addToCart = async (email: string, clothName: string, clothSize: str
 export const getCart = async (email: string) => {
     const user = await User.findOne({email: email});
     const cart = await Cart.findOne({_id: user?.cart}).populate('clothes');
-    
+    //return cart?.clothes;
     return cart;
 };
 

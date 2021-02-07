@@ -43,3 +43,11 @@ export const createCloth = async (cloth: ICloth) => {
         return true;
     });
 }
+
+export const updateCloth = async (clothParams: LooseObject, amount: number) => {
+    return await Cloth.updateOne(clothParams, {amount: amount});
+};
+
+export const deleteCloth = async (clothParams: LooseObject) => {
+    return await Cloth.deleteOne(clothParams);
+};

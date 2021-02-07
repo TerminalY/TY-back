@@ -1,5 +1,4 @@
-import mongoose  from "mongoose";
-import { IUser, UserDocument } from "../../../db/models/user";
+import { IUser } from "../../../db/models/user";
 import { LooseObject } from "../../../utils/models";
 import * as provider from "../providers/users-data-provider";
 
@@ -20,11 +19,16 @@ export const addToCart = async (email: string,  clothName: string, clothSize: st
 };
 
 export const getCart = async (email: string) => {
-    return await provider.getCart(email);
+    let cart = await provider.getCart(email);
+
+    // Map reduce to get the total price of cart
+    const sum = cart?.clothes?.map(cloth => cloth.price).reduce((sum, price)=> sum + price);
+
+    return {cart, sum};
 };
 
-export const createUser = async (user: IUser) => {
-    console.log(user)
+export const createUser = async (username: string, email: string, password: string) => {
+    let user: IUser = {username: username, email: email, password: password, type: 'user', cart: undefined};
     return await provider.createUser(user);
 };
 

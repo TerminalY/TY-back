@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import * as controller from "./controllers/clothes-controller";
 import { ICloth } from '../../db/models/cloth';
+import { LooseObject } from "../../utils/models";
 
 export default [
   {
@@ -18,18 +19,40 @@ export default [
     path: "/clothes",
     method: "post",
     handler: async (req: Request, res: Response) => {
-      const cloth: ICloth = { name: req.body.desc,
-                              color: req.body.color,
-                              price: req.body.price,
-                              size: req.body.size,
-                              type: req.body.type,
-                              subtype: req.body.subtype,
-                              stock: req.body.stock,
-                              gender: req.body.gender,
-                              img: req.body.image,
-                              company: req.body.company
+      
+      const result = await controller.createCloth(req);
+      res.send(result);
+    }
+  },
+  {
+    /**
+     * This route updates the stock (amount) of specific clothing item
+     */
+    path: "/clothes/update",
+    method: "post",
+    handler: async (req: Request, res: Response) => {
+      const cloth: LooseObject = { name: req.body.desc,
+                                  color: req.body.color,
+                                  size: req.body.size,
+                                  gender: req.body.gender
       }
-      const result = await controller.createCloth(cloth);
+      const result = await controller.updateCloth(cloth, req.body.amount);
+      res.send(result);
+    }
+  },
+  {
+    /**
+     * This route deletes a clothing item entirely from db
+     */
+    path: "/clothes/delete",
+    method: "post",
+    handler: async (req: Request, res: Response) => {
+      const cloth: LooseObject = { name: req.body.desc,
+                                  color: req.body.color,
+                                  size: req.body.size,
+                                  gender: req.body.gender
+      }
+      const result = await controller.deleteCloth(cloth);
       res.send(result);
     }
   }

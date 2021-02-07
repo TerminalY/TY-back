@@ -1,5 +1,5 @@
-import { ICart, Cart, CartDocument } from '../../../db/models/shopping-cart';
-import { IUser, UserDocument, User } from '../../../db/models/user';
+import { Cart } from '../../../db/models/shopping-cart';
+import { IUser, User } from '../../../db/models/user';
 
 export const createCart = async (user: IUser) => {
     let created

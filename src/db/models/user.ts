@@ -5,7 +5,7 @@ const usersSchema = new mongoose.Schema({
     password:   { type: String, required: true },
     type:         String,
     email:      { type: String, required: true, unique: true },
-    cart:       { type: mongoose.Schema.Types.ObjectId, ref: 'Carts' }
+    cart:       { type: mongoose.Schema.Types.ObjectId, ref: 'Carts' },
 });
 
 export interface IUser  {
@@ -14,7 +14,6 @@ export interface IUser  {
     email: string;
     type?: string;
     cart?: Types.ObjectId;
-    favorites?: Types.ObjectId[];
 }
 
 // Interface for pulling data from db
