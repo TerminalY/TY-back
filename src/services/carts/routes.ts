@@ -17,5 +17,13 @@ export default [
         const data = await controller.order(req.body.email, req.body.address);
         res.send(data);
       }
+    },
+    {
+      path: "/cart/deleteitem",
+      method: "post",
+      handler: async (req: Request, res: Response, next: NextFunction) => {
+        const data = await controller.deleteItemInCart(req);
+        res.send(data);
+      }
     }
 ];

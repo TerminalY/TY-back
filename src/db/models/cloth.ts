@@ -16,16 +16,16 @@ const clothesSchema = new mongoose.Schema({
 
 // Interface for pushing data to db
 export interface ICloth {
-    name: string;
-    type: string;
-    subtype: string;
-    price: number;
-    company: string;
+    name?: string;
+    type?: string;
+    subtype?: string;
+    price?: number;
+    company?: string;
     gender?: string;
-    size: string;
-    color: string;
-    stock: number;
-    img: string;
+    size?: string;
+    color?: string;
+    stock?: number;
+    img?: string;
 }
 
 // Interface for pulling data from db
