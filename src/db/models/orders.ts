@@ -1,8 +1,9 @@
 import mongoose, {Types} from 'mongoose';
+import { ICloth } from './cloth';
 
 const clothesSchema = new mongoose.Schema({
-    email: String,
-    date: Date,
+    email: {type : String, required : true},
+    date: Number,
     items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Clothes'}],
     price: Number,
     address: String
@@ -11,8 +12,8 @@ const clothesSchema = new mongoose.Schema({
 // Interface for pushing data to db
 export interface IOrder {
     email?: string,
-    date?: Date,
-    items?: Types.ObjectId[],
+    date?: number,
+    items?: ICloth[],
     price?: number,
     address?: string
 }
