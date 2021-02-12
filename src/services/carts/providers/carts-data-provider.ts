@@ -34,8 +34,7 @@ export const getAllOrders = async () => {
     return await Order.find();
 }
 
-export const deleteItemInCart = async (email: string, cloth: ICloth) => {
+export const deleteItemInCart = async (email: string, id) => {
     const cart = await getCart(email);
-    const deleteCloth = new Cloth(cloth)
-    Cart.updateOne({_id : cart.cart?._id}, {$pullAll : {clothes: [deleteCloth._id]}});
+    return await Cart.updateOne({_id : cart.cart?._id}, {$pull : {clothes: id}});
 }

@@ -53,10 +53,12 @@ export const getCloth = async (params: any) => {
 
         // Go over each cloth and save the size and amount per color
         clothDoc.clothes.forEach(cloth => {
-            if(!parsedCloth.properties[cloth.color]) {
-                parsedCloth.properties[cloth.color] = [];
+            if(parsedCloth.properties && cloth.color && cloth.size && cloth.stock) {
+                if(!parsedCloth.properties[cloth.color]) {
+                    parsedCloth.properties[cloth.color] = [];
+                }
+                parsedCloth.properties[cloth.color].push([cloth.size,cloth.stock]);
             }
-            parsedCloth.properties[cloth.color].push([cloth.size,cloth.stock]);
         });
         retClothes.push(parsedCloth);
     });

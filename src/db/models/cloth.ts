@@ -33,14 +33,14 @@ export interface ClothDocument extends ICloth, mongoose.Document {
 }
 
 export interface ParsedCloth {
-    name: string;
-    type: string;
-    subtype: string;
-    price: Number;
-    company: string;
+    name?: string;
+    type?: string;
+    subtype?: string;
+    price?: Number;
+    company?: string;
     gender?: string;
     img?: string;
-    properties: ClothProperties;
+    properties?: ClothProperties;
 }
 // color : [size, stock]
 type ClothProperties = { [color: string]: [string, number][]}

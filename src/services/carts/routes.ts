@@ -20,9 +20,9 @@ export default [
     },
     {
       path: "/cart/deleteitem",
-      method: "post",
+      method: "get",
       handler: async (req: Request, res: Response, next: NextFunction) => {
-        const data = await controller.deleteItemInCart(req);
+        const data = await controller.deleteItemInCart(req.query.email, req.query.id);
         res.send(data);
       }
     }

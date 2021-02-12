@@ -15,7 +15,6 @@ export const getAllOrders = async () => {
     return await provider.getAllOrders();
 }
 
-export const deleteItemInCart = async (req: Request) => {
-    const cloth: ICloth = {color : req.body.color, size : req.body.size, name: req.body.name};
-    return await provider.deleteItemInCart(req.body.email, cloth);
+export const deleteItemInCart = async (email, id) => {
+    return await provider.deleteItemInCart(email, id);
 };
