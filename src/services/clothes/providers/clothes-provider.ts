@@ -36,7 +36,7 @@ export const getClothes = async (filter: LooseObject, paging: LooseObject) => {
 export const createCloth = async (cloth: ICloth) => {
     const clothObject = new Cloth(cloth);
     
-    return await clothObject.save((error, document) => {
+    return clothObject.save((error, document) => {
         if(error) {
             return false;
         }

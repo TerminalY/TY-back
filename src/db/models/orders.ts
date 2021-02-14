@@ -1,7 +1,7 @@
 import mongoose, {Types} from 'mongoose';
 import { ICloth } from './cloth';
 
-const clothesSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     email: {type : String, required : true},
     date: Number,
     items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Clothes'}],
@@ -22,6 +22,6 @@ export interface IOrder {
 export interface OrderDocument extends IOrder, mongoose.Document {
 }
 
-export const Order = mongoose.model<OrderDocument>('Orders', clothesSchema);
+export const Order = mongoose.model<OrderDocument>('Orders', orderSchema);
 
 

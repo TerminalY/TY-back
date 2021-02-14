@@ -69,5 +69,8 @@ export const updateUser = async (email: LooseObject, newDetails: LooseObject) =>
 
 export const login = async (email: string, password: string) => {
     const user = await User.findOne({email: email});
-    return (user?.password === password);
+    if (user?.password === password) {
+        return {name: user?.username};
+    } 
+    return undefined;
 };

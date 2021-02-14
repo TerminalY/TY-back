@@ -20,9 +20,12 @@ export const addToCart = async (email: string,  clothName: string, clothSize: st
 
 export const getCart = async (email: string) => {
     let cart = await provider.getCart(email);
-
-    // Map reduce to get the total price of cart (sum = 0 if undefined)
-    const sum = cart?.clothes?.map(cloth => cloth.price).reduce((sum = 0, price = 0)=> sum + price);
+    let sum:number | undefined = 0;
+    if (cart?.clothes && cart.clothes.length > 0) {
+// Map reduce to get the total price of cart (sum = 0 if undefined)
+     sum = cart?.clothes?.map(cloth => cloth.price).reduce((sum = 0, price = 0)=> sum + price);
+    } 
+    
 
     return {cart, sum};
 };

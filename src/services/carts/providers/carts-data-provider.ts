@@ -2,7 +2,6 @@ import { Cart } from '../../../db/models/shopping-cart';
 import { IUser, User } from '../../../db/models/user';
 import { getCart } from '../../users/controllers/users-data-controller';
 import { IOrder, Order } from '../../../db/models/orders';
-import { Cloth, ICloth } from '../../../db/models/cloth';
 
 export const createCart = async (user: IUser) => {
     let created
@@ -24,7 +23,7 @@ export const order = async (email: string, address: string) => {
     let order = new Order({email : email, date: Date.now(), items: cart.cart?.clothes, price : cart.sum, address : address})
     let created = await order.save();
     if(created) {
-        Cart.updateOne({_id : cart.cart?._id}, {clothes: []});
+        await Cart.updateOne({_id : cart.cart?._id}, {clothes: []});
         return true;
     }
     return false;
