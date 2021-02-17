@@ -65,6 +65,10 @@ export const createUser = async (user: IUser) => {
     return true;
 };
 
+export const deleteUser = async (id) => {
+    return await User.findByIdAndDelete(id);
+};
+
 export const updateUser = async (email: LooseObject, newDetails: LooseObject) => {
     let result;
     try {

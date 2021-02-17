@@ -78,5 +78,16 @@ export default [
         const result  = await controller.getCart(req.params.email);
         res.send(result);
       }
-    }
+    },
+    {
+      /**
+       * This route deletes a user from db
+       */
+      path: "/users/delete",
+      method: "post",
+      handler: async (req: Request, res: Response) => {
+        const result = await controller.deleteUser(req.body.id);
+        res.send(result);
+      }
+    },
 ];

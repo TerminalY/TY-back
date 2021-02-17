@@ -38,6 +38,10 @@ export const createUser = async (username: string, email: string, password: stri
     return await provider.createUser(user);
 };
 
+export const deleteUser = async (id) => {
+    return await provider.deleteUser(id);
+};
+
 export const updateUser = async (username: LooseObject, updateData: LooseObject) => {
     return await provider.updateUser(username, updateData);
 };
