@@ -25,6 +25,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^5.0.0-alpha.7",
+    "moment": "^2.29.1",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.5",
     "rxjs": "^6.6.3",

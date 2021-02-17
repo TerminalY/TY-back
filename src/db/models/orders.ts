@@ -11,10 +11,10 @@ const orderSchema = new mongoose.Schema({
 
 // Interface for pushing data to db
 export interface IOrder {
-    email?: string,
-    date?: number,
+    email: string,
+    date: number,
     items?: ICloth[],
-    price?: number,
+    price: number,
     address?: string
 }
 

@@ -51,3 +51,7 @@ export const updateCloth = async (clothParams: LooseObject, amount: number) => {
 export const deleteCloth = async (clothParams: LooseObject) => {
     return await Cloth.deleteOne(clothParams);
 };
+
+export const getClothesAdmin = async (paging: LooseObject) => {
+    return await Cloth.find().skip(paging.pageSize * paging.pageNum).limit(paging.pageSize);
+}

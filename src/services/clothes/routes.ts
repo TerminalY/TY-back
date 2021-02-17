@@ -55,5 +55,17 @@ export default [
       const result = await controller.deleteCloth(cloth);
       res.send(result);
     }
+  },
+  {
+    /**
+     * This route deletes a clothing item entirely from db
+     */
+    path: "/clothes/admin",
+    method: "get",
+    handler: async (req: Request, res: Response) => {
+   
+      const result = await controller.getClothAdmin(req.query);
+      res.send(result);
+    }
   }
 ];

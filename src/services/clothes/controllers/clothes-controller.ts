@@ -1,6 +1,6 @@
 import * as provider from "../providers/clothes-provider";
 import { ICloth, ParsedCloth } from '../../../db/models/cloth';
-import { LooseObject } from "../../../utils/models";
+import { cloth, LooseObject } from "../../../utils/models";
 import { toArray } from "../../../utils/index";
 import { Request } from 'express';
 
@@ -88,4 +88,20 @@ export const updateCloth = async (clothParams: LooseObject, amount: number) => {
 
 export const deleteCloth = async (clothParams: LooseObject) => {
     return await provider.deleteCloth(clothParams);
+}
+
+export const getClothAdmin = async (params: any) => {
+    let paging: LooseObject = {};
+    let retClothes: ICloth[] = [];
+    // Init filter options if required
+   
+
+    // Paging
+    params.pageSize ? paging.pageSize = Number(params.pageSize) : paging.pageSize = 500;
+    params.pageNum  ? paging.pageNum  = Number(params.pageNum) : paging.pageNum = 0;
+
+
+    // Group clothes into a single array that contains all of the sizes, colors and stock
+    return await provider.getClothesAdmin(paging);
+   
 }

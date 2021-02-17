@@ -2,6 +2,7 @@ import { Cart } from '../../../db/models/shopping-cart';
 import { IUser, User } from '../../../db/models/user';
 import { getCart } from '../../users/controllers/users-data-controller';
 import { IOrder, Order } from '../../../db/models/orders';
+import moment from 'moment';
 
 export const createCart = async (user: IUser) => {
     let created
@@ -30,7 +31,18 @@ export const order = async (email: string, address: string) => {
 }
 
 export const getAllOrders = async () => {
-    return await Order.find();
+    let data : { [key:string]: number } = { };
+    let finalData =[{}];
+    const orders = await Order.find();
+    orders.forEach(order => {
+        let date = moment(order.date).format("MMM Do YY");
+        data[date] ? data[date] += Math.round(order.price) : data[date] = Math.round(order.price); 
+    });
+finalData.pop();
+    Object.keys(data).forEach(x=> {
+        finalData.push({year: x, sales: data[x]});
+    })   
+    return finalData;
 }
 
 export const deleteItemInCart = async (email: string, id) => {
