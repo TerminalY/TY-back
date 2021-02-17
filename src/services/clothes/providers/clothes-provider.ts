@@ -53,8 +53,8 @@ export const deleteCloth = async (id) => {
 };
 
 export const getClothesAdmin = async (paging: LooseObject, name: string) => {
-    let count = 0;
-    let clothes = [{}]; 
+    let count;
+    let clothes: any; 
     if (name !== undefined) {
          count = await Cloth.countDocuments({name: name});
          clothes = await Cloth.find({name: name}).skip(paging.pageSize * paging.pageNum).limit(paging.pageSize); 

@@ -10,7 +10,7 @@ export default [
       path: "/users",
       method: "get",
       handler: [async (req: Request, res: Response) => {
-        let data = await controller.getAllUsers();
+        let data = await controller.getAllUsers(req.query);
         res.send(data);
       }]
     },
@@ -78,5 +78,5 @@ export default [
         const result  = await controller.getCart(req.params.email);
         res.send(result);
       }
-    },
+    }
 ];

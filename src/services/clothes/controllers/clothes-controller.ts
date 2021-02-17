@@ -92,7 +92,6 @@ export const deleteCloth = async (id: any) => {
 
 export const getClothAdmin = async (params: any) => {
     let paging: LooseObject = {};
-    let retClothes: ICloth[] = [];
     let name: any;
     // Init filter options if required
    

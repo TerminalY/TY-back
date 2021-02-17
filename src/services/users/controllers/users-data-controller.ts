@@ -1,9 +1,12 @@
+import { Request } from "express";
 import { IUser } from "../../../db/models/user";
 import { LooseObject } from "../../../utils/models";
 import * as provider from "../providers/users-data-provider";
 
-export const getAllUsers = async () => {
-    return await provider.getAllUsers();
+export const getAllUsers = async (req: any) => {
+    let name: any;
+    req.name     ? name   = { $regex: '.*' + req.name + '.*', $options: 'i' } : undefined;
+    return await provider.getAllUsers(name);
 }
 
 export const getUser = async (email: LooseObject) => {

@@ -47,9 +47,6 @@ export default [
     }
   },
   {
-    /**
-     * This route deletes a clothing item entirely from db
-     */
     path: "/clothes/admin",
     method: "get",
     handler: async (req: Request, res: Response) => {

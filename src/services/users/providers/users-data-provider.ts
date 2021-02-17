@@ -4,8 +4,17 @@ import { createCart } from '../../carts/controllers/carts-data-controller'
 import { Cart } from "../../../db/models/shopping-cart";
 import { Cloth } from "../../../db/models/cloth";
 
-export const getAllUsers = async () => {
-    const users = await User.find().populate('cart').populate('favorites');
+export const getAllUsers = async (name: any) => {
+    let users;
+    let count;
+    if(name) {
+        count = await Cloth.countDocuments({username: name});
+        users = await User.find({username: name}).populate('cart').populate('favorites');
+    } else {
+        count = await Cloth.countDocuments();
+        users = await User.find().populate('cart').populate('favorites');
+    }
+    
     return users;
 };
 
