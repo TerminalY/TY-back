@@ -31,12 +31,7 @@ export default [
     path: "/clothes/update",
     method: "post",
     handler: async (req: Request, res: Response) => {
-      const cloth: LooseObject = { name: req.body.desc,
-                                  color: req.body.color,
-                                  size: req.body.size,
-                                  gender: req.body.gender
-      }
-      const result = await controller.updateCloth(cloth, req.body.amount);
+      const result = await controller.updateCloth({_id: req.body.id}, req.body.amount);
       res.send(result);
     }
   },
@@ -47,12 +42,7 @@ export default [
     path: "/clothes/delete",
     method: "post",
     handler: async (req: Request, res: Response) => {
-      const cloth: LooseObject = { name: req.body.desc,
-                                  color: req.body.color,
-                                  size: req.body.size,
-                                  gender: req.body.gender
-      }
-      const result = await controller.deleteCloth(cloth);
+      const result = await controller.deleteCloth(req.body.id);
       res.send(result);
     }
   },

@@ -45,13 +45,23 @@ export const createCloth = async (cloth: ICloth) => {
 }
 
 export const updateCloth = async (clothParams: LooseObject, amount: number) => {
-    return await Cloth.updateOne(clothParams, {amount: amount});
+    return await Cloth.updateOne(clothParams, {stock: amount});
 };
 
-export const deleteCloth = async (clothParams: LooseObject) => {
-    return await Cloth.deleteOne(clothParams);
+export const deleteCloth = async (id) => {
+    return await Cloth.findByIdAndDelete(id);
 };
 
-export const getClothesAdmin = async (paging: LooseObject) => {
-    return await Cloth.find().skip(paging.pageSize * paging.pageNum).limit(paging.pageSize);
+export const getClothesAdmin = async (paging: LooseObject, name: string) => {
+    let count = 0;
+    let clothes = [{}]; 
+    if (name !== undefined) {
+         count = await Cloth.countDocuments({name: name});
+         clothes = await Cloth.find({name: name}).skip(paging.pageSize * paging.pageNum).limit(paging.pageSize); 
+    } else {
+        count = await Cloth.countDocuments();
+         clothes = await Cloth.find().skip(paging.pageSize * paging.pageNum).limit(paging.pageSize); 
+    }
+    
+    return {count: count, clothes: clothes};
 }

@@ -86,15 +86,17 @@ export const updateCloth = async (clothParams: LooseObject, amount: number) => {
     return await provider.updateCloth(clothParams, amount);
 }
 
-export const deleteCloth = async (clothParams: LooseObject) => {
-    return await provider.deleteCloth(clothParams);
+export const deleteCloth = async (id: any) => {
+    return provider.deleteCloth(id);
 }
 
 export const getClothAdmin = async (params: any) => {
     let paging: LooseObject = {};
     let retClothes: ICloth[] = [];
+    let name: any;
     // Init filter options if required
    
+    params.name     ? name   = { $regex: '.*' + params.name + '.*', $options: 'i' } : undefined;
 
     // Paging
     params.pageSize ? paging.pageSize = Number(params.pageSize) : paging.pageSize = 500;
@@ -102,6 +104,6 @@ export const getClothAdmin = async (params: any) => {
 
 
     // Group clothes into a single array that contains all of the sizes, colors and stock
-    return await provider.getClothesAdmin(paging);
+    return await provider.getClothesAdmin(paging, name);
    
 }
