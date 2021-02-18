@@ -79,6 +79,11 @@ export const createCloth = async (req: Request) => {
         img: req.body.image,
         company: req.body.company
     }
+    Object.keys(cloth).forEach(key => {
+        if(cloth[key] == undefined) {
+            return new Error('not all params are sent');
+        }
+    });
     return await provider.createCloth(cloth);
 }
 

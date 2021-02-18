@@ -18,7 +18,6 @@ export default [
     path: "/clothes",
     method: "post",
     handler: async (req: Request, res: Response) => {
-      
       const result = await controller.createCloth(req);
       res.send(result);
     }
@@ -30,7 +29,7 @@ export default [
     path: "/clothes/update",
     method: "post",
     handler: async (req: Request, res: Response) => {
-      if(+(req.body.amount) == NaN) {
+      if(isNaN(+req.body.amount)) {
         res.send('Not a number')
       }
       const result = await controller.updateCloth({_id: req.body.id}, req.body.amount);
