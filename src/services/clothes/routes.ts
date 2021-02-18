@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
+import { Int32 } from "mongodb";
 import * as controller from "./controllers/clothes-controller";
-import { ICloth } from '../../db/models/cloth';
-import { LooseObject } from "../../utils/models";
 
 export default [
   {
@@ -31,6 +30,9 @@ export default [
     path: "/clothes/update",
     method: "post",
     handler: async (req: Request, res: Response) => {
+      if(+(req.body.amount) == NaN) {
+        res.send('Not a number')
+      }
       const result = await controller.updateCloth({_id: req.body.id}, req.body.amount);
       res.send(result);
     }
