@@ -8,14 +8,14 @@ export const getAllUsers = async (name: any) => {
     let users;
     let count;
     if(name) {
-        count = await Cloth.countDocuments({username: name});
+        count = await User.countDocuments({username: name});
         users = await User.find({username: name}).populate('cart').populate('favorites');
     } else {
-        count = await Cloth.countDocuments();
+        count = await User.countDocuments();
         users = await User.find().populate('cart').populate('favorites');
     }
     
-    return users;
+    return {users, count};
 };
 
 export const getUser = async (email: LooseObject) => {
@@ -58,7 +58,6 @@ export const createUser = async (user: IUser) => {
         }
     }
     catch(err) {
-        console.log(err)
         return err;
     }
 

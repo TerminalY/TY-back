@@ -43,7 +43,7 @@ export default [
      * Create new user
      */
     {
-      path: "/users",
+      path: "/users/add",
       method: "post",
       handler: [async (req: Request, res: Response, next: NextFunction) => {
         const result  = await controller.createUser(req.body.username, req.body.email, req.body.password);
@@ -83,9 +83,9 @@ export default [
       /**
        * This route deletes a user from db
        */
-      path: "/users/delete",
+      path: "/user/delete",
       method: "post",
-      handler: async (req: Request, res: Response) => {
+      handler: async (req: Request, res: Response, next: NextFunction) => {
         const result = await controller.deleteUser(req.body.id);
         res.send(result);
       }

@@ -39,7 +39,7 @@ export const createUser = async (username: string, email: string, password: stri
 };
 
 export const deleteUser = async (id) => {
-    return await provider.deleteUser(id);
+    return provider.deleteUser(id);
 };
 
 export const updateUser = async (username: LooseObject, updateData: LooseObject) => {
