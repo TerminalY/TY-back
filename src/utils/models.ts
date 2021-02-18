@@ -4,3 +4,5 @@ export interface cloth {
     price: number;
     colors: string[];
 }
+
+export type LooseObject = { [id: string] : any};

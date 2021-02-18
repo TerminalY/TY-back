@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
+import { Int32 } from "mongodb";
 import * as controller from "./controllers/clothes-controller";
-import { ICloth } from '../../db/models/cloth';
 
 export default [
   {
@@ -18,31 +18,42 @@ export default [
     path: "/clothes",
     method: "post",
     handler: async (req: Request, res: Response) => {
-      const cloth: ICloth = { name: req.body.name,
-                              color: req.body.color,
-                              price: req.body.price,
-                              size: req.body.size,
-                              type: req.body.type,
-                              amount: req.body.amount,
-                              gender: req.body.gender,
-                              img: req.body.img
-      }
-      const result = await controller.createCloth(cloth);
+      const result = await controller.createCloth(req);
       res.send(result);
     }
   },
   {
-    path: "/clothes/:name",
+    /**
+     * This route updates the stock (amount) of specific clothing item
+     */
+    path: "/clothes/update",
     method: "post",
     handler: async (req: Request, res: Response) => {
-      const cloth: ICloth = { name: req.params.name,
-                              color: req.body.color,
-                              price: req.body.price,
-                              size: req.body.size,
-                              type: req.body.type,
-                              amount: req.body.amount
+      if(isNaN(+req.body.amount)) {
+        res.send('Not a number')
       }
-      const result = await controller.createCloth(cloth);
+      const result = await controller.updateCloth({_id: req.body.id}, req.body.amount);
+      res.send(result);
+    }
+  },
+  {
+    /**
+     * This route deletes a clothing item entirely from db
+     */
+    path: "/clothes/delete",
+    method: "post",
+    handler: async (req: Request, res: Response) => {
+      const result = await controller.deleteCloth(req.body.id);
+      res.send(result);
+    }
+  },
+  {
+    path: "/clothes/admin",
+    method: "get",
+    handler: async (req: Request, res: Response) => {
+   
+      const result = await controller.getClothAdmin(req.query);
+      res.send(result);
     }
   }
 ];

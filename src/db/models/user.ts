@@ -1,23 +1,26 @@
-import mongoose from 'mongoose'
-import { ICart } from './shopping-cart';
+import mongoose, { Types } from 'mongoose'
 
 const usersSchema = new mongoose.Schema({
-    userName: { type: String, 
-                unique: true
-            },
-    type: String,
-    cart: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'carts'
-    }
+    username:   { type: String, required: true },
+    password:   { type: String, required: true },
+    type:         String,
+    email:      { type: String, required: true, unique: true },
+    cart:       { type: mongoose.Schema.Types.ObjectId, ref: 'Carts' },
 });
 
-export interface IUser {
-    userName?: String;
-    type?: String;
-    cart?: ICart;
+export interface IUser  {
+    username: string;
+    password: string;
+    email: string;
+    type?: string;
+    cart?: Types.ObjectId;
 }
 
-export const Cloth = mongoose.model('Clothes', usersSchema);
+// Interface for pulling data from db
+export interface UserDocument extends IUser, mongoose.Document {
+}
+
+
+export const User = mongoose.model<UserDocument>('Users', usersSchema);
 
 
